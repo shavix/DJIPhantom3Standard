@@ -6,6 +6,9 @@
 //  Copyright © 2016 David Richardson. All rights reserved.
 //
 
+// iOS-PanoramaDemo
+    // https://github.com/DJI-Mobile-SDK/iOS-PanoramaDemo
+
 #import "ViewController.h"
 #import <DJISDK/DJISDK.h>
 
@@ -37,6 +40,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    // register app
     NSString *appKey = @"94084e2f1f048fedad8947cd";
     [DJISDKManager registerApp:appKey withDelegate:self];
     

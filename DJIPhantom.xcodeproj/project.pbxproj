@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		63032E641CBB396F00B12485 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 63032E631CBB396F00B12485 /* main.m */; };
-		63032E671CBB396F00B12485 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 63032E661CBB396F00B12485 /* AppDelegate.m */; };
-		63032E6A1CBB396F00B12485 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63032E691CBB396F00B12485 /* ViewController.m */; };
+		63032E671CBB396F00B12485 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63032E661CBB396F00B12485 /* AppDelegate.mm */; };
+		63032E6A1CBB396F00B12485 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 63032E691CBB396F00B12485 /* ViewController.mm */; };
 		63032E6D1CBB396F00B12485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63032E6B1CBB396F00B12485 /* Main.storyboard */; };
 		63032E701CBB396F00B12485 /* DJIPhantom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63032E6E1CBB396F00B12485 /* DJIPhantom.xcdatamodeld */; };
 		63032E721CBB396F00B12485 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63032E711CBB396F00B12485 /* Assets.xcassets */; };
@@ -17,6 +17,9 @@
 		63032E801CBB396F00B12485 /* DJIPhantomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63032E7F1CBB396F00B12485 /* DJIPhantomTests.m */; };
 		63032E8B1CBB396F00B12485 /* DJIPhantomUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 63032E8A1CBB396F00B12485 /* DJIPhantomUITests.m */; };
 		63032E9C1CBB47F900B12485 /* DJISDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63032E9B1CBB47F900B12485 /* DJISDK.framework */; };
+		63032E9F1CBB486900B12485 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63032E9E1CBB486900B12485 /* libstdc++.6.0.9.tbd */; };
+		63032EA11CBB490B00B12485 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63032EA01CBB490B00B12485 /* libz.1.dylib */; };
+		63032EA31CBB49E200B12485 /* DJISDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63032E9B1CBB47F900B12485 /* DJISDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,13 +39,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		63032EA41CBB49E200B12485 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				63032EA31CBB49E200B12485 /* DJISDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		63032E5F1CBB396F00B12485 /* DJIPhantom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJIPhantom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63032E631CBB396F00B12485 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		63032E651CBB396F00B12485 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		63032E661CBB396F00B12485 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		63032E661CBB396F00B12485 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		63032E681CBB396F00B12485 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		63032E691CBB396F00B12485 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		63032E691CBB396F00B12485 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		63032E6C1CBB396F00B12485 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		63032E6F1CBB396F00B12485 /* DJIPhantom.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DJIPhantom.xcdatamodel; sourceTree = "<group>"; };
 		63032E711CBB396F00B12485 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +72,8 @@
 		63032E8A1CBB396F00B12485 /* DJIPhantomUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DJIPhantomUITests.m; sourceTree = "<group>"; };
 		63032E8C1CBB396F00B12485 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63032E9B1CBB47F900B12485 /* DJISDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DJISDK.framework; sourceTree = "<group>"; };
+		63032E9E1CBB486900B12485 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		63032EA01CBB490B00B12485 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +81,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63032EA11CBB490B00B12485 /* libz.1.dylib in Frameworks */,
+				63032E9F1CBB486900B12485 /* libstdc++.6.0.9.tbd in Frameworks */,
 				63032E9C1CBB47F900B12485 /* DJISDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,6 +111,7 @@
 				63032E7E1CBB396F00B12485 /* DJIPhantomTests */,
 				63032E891CBB396F00B12485 /* DJIPhantomUITests */,
 				63032E601CBB396F00B12485 /* Products */,
+				63032E9D1CBB480200B12485 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,12 +128,11 @@
 		63032E611CBB396F00B12485 /* DJIPhantom */ = {
 			isa = PBXGroup;
 			children = (
-				63032E9D1CBB480200B12485 /* Frameworks */,
 				63032E9A1CBB39B000B12485 /* Controller */,
 				63032E991CBB39AD00B12485 /* View */,
 				63032E981CBB39A900B12485 /* Model */,
 				63032E651CBB396F00B12485 /* AppDelegate.h */,
-				63032E661CBB396F00B12485 /* AppDelegate.m */,
+				63032E661CBB396F00B12485 /* AppDelegate.mm */,
 				63032E711CBB396F00B12485 /* Assets.xcassets */,
 				63032E731CBB396F00B12485 /* LaunchScreen.storyboard */,
 				63032E761CBB396F00B12485 /* Info.plist */,
@@ -166,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				63032E681CBB396F00B12485 /* ViewController.h */,
-				63032E691CBB396F00B12485 /* ViewController.m */,
+				63032E691CBB396F00B12485 /* ViewController.mm */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -174,9 +195,12 @@
 		63032E9D1CBB480200B12485 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63032EA01CBB490B00B12485 /* libz.1.dylib */,
+				63032E9E1CBB486900B12485 /* libstdc++.6.0.9.tbd */,
 				63032E9B1CBB47F900B12485 /* DJISDK.framework */,
 			);
 			name = Frameworks;
+			path = DJIPhantom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +213,7 @@
 				63032E5B1CBB396F00B12485 /* Sources */,
 				63032E5C1CBB396F00B12485 /* Frameworks */,
 				63032E5D1CBB396F00B12485 /* Resources */,
+				63032EA41CBB49E200B12485 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -309,9 +334,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63032E6A1CBB396F00B12485 /* ViewController.m in Sources */,
+				63032E6A1CBB396F00B12485 /* ViewController.mm in Sources */,
 				63032E701CBB396F00B12485 /* DJIPhantom.xcdatamodeld in Sources */,
-				63032E671CBB396F00B12485 /* AppDelegate.m in Sources */,
+				63032E671CBB396F00B12485 /* AppDelegate.mm in Sources */,
 				63032E641CBB396F00B12485 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

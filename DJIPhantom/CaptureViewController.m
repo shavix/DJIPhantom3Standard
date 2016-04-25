@@ -12,6 +12,7 @@
 #import "CaptureViewController.h"
 #import "VideoPreviewer/VideoPreviewer.h"
 #import <DJISDK/DJISDK.h>
+#import<CoreLocation/CoreLocation.h>
 
 #define weakSelf(__TARGET__) __weak typeof(self) __TARGET__=self
 #define weakReturn(__TARGET__) if(__TARGET__==nil)return;
@@ -19,7 +20,7 @@
 float rollAngle = 10;
 float yawAngle = 10;
 
-@interface CaptureViewController () <DJICameraDelegate, DJISDKManagerDelegate, DJIPlaybackDelegate, DJIFlightControllerDelegate>
+@interface CaptureViewController () <DJICameraDelegate, DJISDKManagerDelegate, DJIPlaybackDelegate, DJIFlightControllerDelegate,CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (strong, nonatomic) UIView *fpvPreviewView;
@@ -29,6 +30,7 @@ float yawAngle = 10;
 @property (strong, nonatomic) UIButton *rollRightButton;
 @property (strong, nonatomic) UIButton *rollLeftButton;
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -39,6 +41,7 @@ float yawAngle = 10;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
 }
 
 - (void)setupUI {
@@ -49,11 +52,10 @@ float yawAngle = 10;
     [self.view addSubview:self.backgroundImageView];
     
     // imageView
-    CGFloat width = self.view.frame.size.width / 3;
+    CGFloat width = self.view.frame.size.width / 2;
     CGFloat height = 3 * self.view.frame.size.height / 4;
-    CGRect frame = CGRectMake(width, 0, width, height);
+    CGRect frame = CGRectMake(width / 2, 0, width, height);
     self.fpvPreviewView = [[UIView alloc] initWithFrame:frame];
-    self.fpvPreviewView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.fpvPreviewView];
     
     [self setupButtons];
@@ -65,15 +67,15 @@ float yawAngle = 10;
     // autoLand button
     self.landButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _landButton.frame = CGRectMake(3 * self.view.frame.size.width / 8, self.view.frame.size.height - 60, self.view.frame.size.width / 4, 40);
-    [_landButton setTitle:@"Land" forState:UIControlStateNormal];
+    [_landButton setTitle:@"Hack" forState:UIControlStateNormal];
     [_landButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    _landButton.backgroundColor = [UIColor whiteColor];
+    _landButton.backgroundColor = [UIColor redColor];
     // Add an action in current code file (i.e. target)
     [_landButton addTarget:self action:@selector(landButtonPressed:)
       forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_landButton];
     
-    CGFloat width = self.view.frame.size.width / 4;
+    CGFloat width = self.view.frame.size.width / 5;
     CGFloat height = self.view.frame.size.height / 3;
     
     // rotate left button
@@ -105,7 +107,7 @@ float yawAngle = 10;
     [_rollLeftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _rollLeftButton.backgroundColor = [UIColor whiteColor];
     // Add an action in current code file (i.e. target)
-    [_rollLeftButton addTarget:self action:@selector(lRotatePressed:)
+    [_rollLeftButton addTarget:self action:@selector(lRollPressed:)
                  forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_rollLeftButton];
     
@@ -134,7 +136,6 @@ float yawAngle = 10;
     [super viewDidAppear:animated];
     [[VideoPreviewer instance] setView:self.fpvPreviewView];
     
-
 }
 
 #pragma mark - buttons
@@ -143,9 +144,33 @@ float yawAngle = 10;
     
     DJIFlightController *flightController = [self fetchFlightController];
     
+    float latitude = 34.0209481;
+    float longitude = -118.2825436;
+    /*
+    CLLocationCoordinate2D home = CLLocationCoordinate2DMake(latitude, longitude);
+    
+    NSLog(@"%f", home.latitude);
+    NSLog(@"%f", home.longitude);
+    
+    [flightController setHomeLocation:home withCompletion:^(NSError *err) {
+        NSLog(@"%@", err.description);
+    }];
+    
+    
+    [flightController goHomeWithCompletion:^(NSError *err) {
+        NSLog(@"%@", err.description);
+    }];
+     */
+    
+    NSString *message = [NSString stringWithFormat:@"Drone hacked! Sending to coordinates:\r(%f, %f)", latitude, longitude];
+    
+    [self showAlertViewWithTitle:@"Success" withMessage:message];
+    
+    /*
     [flightController autoLandingWithCompletion:^(NSError *error){
         NSLog(@"landed");
     }];
+     */
 }
 
 - (void)lRotatePressed:(id)sender {
@@ -208,6 +233,13 @@ float yawAngle = 10;
 
 - (void)rollDrone:(NSTimer *)timer {
     
+    
+    DJIMissionManager *missionManager = [DJIMissionManager sharedInstance];
+    [missionManager stopMissionExecutionWithCompletion:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    
+    
     NSDictionary *dict = [timer userInfo];
     NSString *direction = [dict objectForKey:@"Direction"];
     
@@ -222,7 +254,7 @@ float yawAngle = 10;
     
     DJIVirtualStickFlightControlData vsFlightCtrlData;
     vsFlightCtrlData.pitch = 0;
-    vsFlightCtrlData.roll = angle;
+    vsFlightCtrlData.roll = 10;
     vsFlightCtrlData.verticalThrottle = 0;
     vsFlightCtrlData.yaw = 0;
     
@@ -236,6 +268,12 @@ float yawAngle = 10;
 
 - (void)rotateDrone:(NSTimer *)timer
 {
+    
+    DJIMissionManager *missionManager = [DJIMissionManager sharedInstance];
+    [missionManager stopMissionExecutionWithCompletion:^(NSError *error) {
+        NSLog(@"%@", error.description);
+    }];
+    
     NSDictionary *dict = [timer userInfo];
     NSString *direction = [dict objectForKey:@"Direction"];
     
@@ -251,7 +289,7 @@ float yawAngle = 10;
     vsFlightCtrlData.pitch = 0;
     vsFlightCtrlData.roll = 0;
     vsFlightCtrlData.verticalThrottle = 0;
-    vsFlightCtrlData.yaw = angle;
+    vsFlightCtrlData.yaw = 10;
     
     [flightController sendVirtualStickFlightControlData:vsFlightCtrlData withCompletion:^(NSError * _Nullable error) {
         if (error) {
